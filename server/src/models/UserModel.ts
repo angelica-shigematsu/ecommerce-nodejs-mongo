@@ -1,4 +1,4 @@
-import User from "../schemas/User";
+const User = require("../schemas/User");
 import UserEntity from "../type/User";
 
 class UserModel {
@@ -8,9 +8,8 @@ class UserModel {
   }
   
   async findByEmail(email: string) {
-    const emailFromUser = await User.findOne({
-      where: { email: email}
-    })
+    const emailFromUser = await User.findOne({email})
+    
    return emailFromUser
   }
 }

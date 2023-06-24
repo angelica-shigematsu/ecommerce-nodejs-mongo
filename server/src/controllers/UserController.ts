@@ -13,11 +13,10 @@ class UserController {
                 numberHouse,
                 phone,
                 email} = req.body
-    
                
         const foundEmail = await UserModel.findByEmail(email);
     
-        if (foundEmail) throw new Error(`Email ${email} already exists`);
+        if (foundEmail) res.status(400).json(`Email ${email} already exists`);
 
         const user : UserEntity = {
             name,
@@ -33,7 +32,7 @@ class UserController {
     
         await UserModel.save(user);
     
-        return res.status(2001).json({ message: `Create user successfully`}) ;
+        return res.status(201).json({ message: `Create user successfully`}) ;
     }
 }
 
