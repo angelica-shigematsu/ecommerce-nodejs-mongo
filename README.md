@@ -8,6 +8,7 @@ Desenvolvimento de um site e-commerce
 - Node.js
 - Mongoose
 - Eslint
+- Jest (teste unitário)
 
 ##  Desenvolvedora:
 - Angélica Shigematsu
@@ -16,9 +17,19 @@ Desenvolvimento de um site e-commerce
 - Em andamento
 
 ## Como usar
-No terminal digitar:
+- Baixar dependências : entrar na pasta server
+```
+npm install
+```
+- Testar na API (Postman, Insomnia, outros):
 ```
 npm run dev
 ```
+- Testar com Jest 
+```
+npm run test
+```
+
+
 
 
