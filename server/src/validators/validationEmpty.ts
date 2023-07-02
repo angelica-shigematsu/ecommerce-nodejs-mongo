@@ -1,6 +1,7 @@
+import ProductEntity from "../type/Product";
 import UserEntity from "../type/User";
 
-export const isEmpty = (data:UserEntity) => {
+const isEmptyUser = (data:UserEntity) => {
   const isEmptyData = !data.name || !data.address || 
                       !data.city || !data.cpf || 
                       !data.dateBirth || !data.email || 
@@ -10,3 +11,16 @@ export const isEmpty = (data:UserEntity) => {
 
   return false
 }
+
+const isEmptyProduct = (data: ProductEntity) => {
+  const isEmptyData = !data.description || !data.stock || 
+                      !data.price || !data.typeProduct || 
+                      !data.photo_link 
+  if(isEmptyData) return true
+
+  return false
+}
+export { 
+        isEmptyProduct, 
+        isEmptyUser 
+      }

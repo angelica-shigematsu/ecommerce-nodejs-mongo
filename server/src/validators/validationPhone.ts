@@ -1,3 +1,5 @@
-export const hasCharacter = /[a-z]/i
+const hasCharacter = (phone:string): boolean => { 
+  return /[a-z]/i.test(phone) 
+}
 
-export const hasNumber = /[0-9]/
+export default hasCharacter
