@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "test": "jest ./_tests_/"
+    "test": "jest ./_tests_/",
+    "testUnit": "jest ./tests/ --findRelatedTests"
   },
   "author": "",
   "license": "ISC",
