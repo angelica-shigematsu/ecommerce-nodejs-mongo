@@ -8,4 +8,6 @@ export default interface UserEntity {
   numberHouse: number;
   phone: string;
   email: string;
+  active: boolean;
+  level: string;
 }
