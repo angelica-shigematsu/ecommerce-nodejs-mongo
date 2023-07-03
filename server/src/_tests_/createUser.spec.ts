@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const User =  require('../schemas/User')
+const UserModel = require('../models/UserModel')
 const mongoURL= require('../config')
 
 const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
@@ -34,7 +34,7 @@ describe('insert', () => {
       email: 'teste@gmail.com',
     };
 
-    const user = await User.create(mockUser)
+    const user = await UserModel.create(mockUser)
 
     expect(user).toHaveProperty('_id');
   });
