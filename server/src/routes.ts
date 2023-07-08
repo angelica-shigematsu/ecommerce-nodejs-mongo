@@ -4,8 +4,11 @@ import ProductController from './controllers/ProductController';
 const routes = Router()
 
 
-routes.post('/user', UserController.createUser)
+routes.post('/users', UserController.createUser)
+routes.patch('/users/:id', UserController.updateUser)
+
 routes.post('/product', ProductController.createProduct)
+
 
 export default routes
 

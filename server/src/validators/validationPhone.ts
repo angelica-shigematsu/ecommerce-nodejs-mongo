@@ -1,5 +1,7 @@
-const hasCharacter = (phone:string): boolean => { 
-  return /[a-z]/i.test(phone) 
+const regExPhone = /[\d]{11}/
+
+const validationPhone = (phone:string): boolean => { 
+  return regExPhone.test(phone) 
 }
 
-export default hasCharacter
+export default validationPhone

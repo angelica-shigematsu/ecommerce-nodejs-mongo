@@ -48,7 +48,7 @@ class UserController {
                 level
             }
 
-            if(isEmptyUser(user)) throw new Error(`Field user empty`)
+            if (isEmptyUser(user)) throw new Error(`Field user empty`)
         
             await UserModel.create(user);
         
