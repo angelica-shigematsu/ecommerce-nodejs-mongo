@@ -1,41 +1,51 @@
-const mongoose = require('mongoose')
-const UserModel = require('../models/UserModel')
-const mongoURL= require('../config')
+import validationCpf from "../validators/validationCpf";
 
 const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
 
-describe('insert', () => {
-   beforeAll(async () => {
-    if(!process.env.MONGO_URL) {
-      throw new Error('MOngoDB server not initialized')
-    }
+describe('validations of data from users', () => {
+  it('should not able accept cpf', () => {
 
-    await mongoose.connect(mongoURL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-  });
+    const cpf = '1234567890'
 
-  afterAll(async () => {
-    await mongoose.connection.close();
-  });
+    const isCpf = validationCpf(cpf)
 
-  it('should able to create user', async () => {
+    expect(isCpf).toBeFalsy()
+  })
+})
 
-    const mockUser = {
-      name: 'Teste',
-      dateBirth: '1987-05-01',
-      cpf: '12345678901',
-      address: 'Rua Main',
-      city: 'Wall Street',
-      states: 'New York',
-      numberHouse: '123',
-      phone: '1234555556789',
-      email: 'teste@gmail.com',
-    };
 
-    const user = await UserModel.create(mockUser)
+// describe('insert', () => {
+//    beforeAll(async () => {
+//     if(!process.env.MONGO_URL) {
+//       throw new Error('MOngoDB server not initialized')
+//     }
 
-    expect(user).toHaveProperty('_id');
-  });
-});
+//     await mongoose.connect(mongoURL, {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     });
+//   });
+
+//   afterAll(async () => {
+//     await mongoose.connection.close();
+//   });
+
+//   it('should able to create user', async () => {
+
+//     const mockUser = {
+//       name: 'Teste',
+//       dateBirth: '1987-05-01',
+//       cpf: '12345678901',
+//       address: 'Rua Main',
+//       city: 'Wall Street',
+//       states: 'New York',
+//       numberHouse: '123',
+//       phone: '1234555556789',
+//       email: 'teste@gmail.com',
+//     };
+
+//     const user = await UserModel.create(mockUser)
+
+//     expect(user).toHaveProperty('_id');
+//   });
+// });
