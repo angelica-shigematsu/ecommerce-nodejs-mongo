@@ -122,6 +122,20 @@ class UserController {
             return res.status(400).json({ message: error.message })
         }
     }
+
+    async deleteUser(req: Request, res: Response): Promise<Response> {
+        try {
+            const { id } = req.params
+
+            const user = await UserModel.findOneAndDelete({_id: id })
+
+            if (!user) throw new Error(`Not exists this user`)
+        
+            return res.status(200).send({ message: `Delete user successfully` })
+        }catch(error) {
+            return res.status(404).send({ message: error.message})
+        }
+    }
 }
 
 export default new UserController()
