@@ -6,7 +6,7 @@ const isEmptyUser = (data:UserEntity) => {
                       !data.city || !data.cpf || 
                       !data.dateBirth || !data.email || 
                       !data.numberHouse || !data.phone || 
-                      !data.state
+                      !data.state || !data.active || !data.level
   if(isEmptyData) return true
 
   return false
@@ -15,7 +15,7 @@ const isEmptyUser = (data:UserEntity) => {
 const isEmptyProduct = (data: ProductEntity) => {
   const isEmptyData = !data.description || !data.stock || 
                       !data.price || !data.typeProduct || 
-                      !data.photo_link 
+                      !data.photo_link || !data.active
   if(isEmptyData) return true
 
   return false
