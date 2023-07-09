@@ -15,6 +15,9 @@ const ProductModel = new Schema({
   },
   photo_link: {
     type: String,
+  },
+  active: {
+    type: Boolean
   }
 }, {
   timestamps: true

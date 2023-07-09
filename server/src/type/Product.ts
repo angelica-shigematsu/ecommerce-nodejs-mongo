@@ -4,4 +4,5 @@ export default interface ProductEntity {
   price: number;
   typeProduct: string;
   photo_link: string;
+  active: boolean;
 }
