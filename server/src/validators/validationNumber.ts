@@ -1,4 +1,4 @@
-const regExIsReal = /[/d]{0,2}/
+const regExIsReal = /^\d+(.|,\d{1,2})$/
 
 const isNumber = (value: any)=> {
   return regExIsReal.test(value)

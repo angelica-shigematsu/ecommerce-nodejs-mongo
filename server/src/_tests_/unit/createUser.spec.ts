@@ -1,4 +1,4 @@
-import validationCpf from "../validators/validationCpf";
+import validationCpf from "../../validators/validationCpf";
 
 const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
 

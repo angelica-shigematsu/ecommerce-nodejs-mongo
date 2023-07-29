@@ -3,13 +3,13 @@ import UserController  from './controllers/UserController'
 import ProductController from './controllers/ProductController';
 const routes = Router()
 
-routes.post('/users', UserController.createUser)
-routes.patch('/users/:id', UserController.updateUser)
-routes.delete('/users/:id', UserController.deleteUser)
+routes.post('/user', UserController.createUser)
+routes.patch('/user/:id', UserController.updateUser)
+routes.delete('/user/:id', UserController.deleteUser)
 
-routes.post('/products', ProductController.createProduct)
-routes.patch('/products/:id', ProductController.updateProduct)
-routes.delete('/products/:id', ProductController.deleteProduct)
+routes.post('/product', ProductController.createProduct)
+routes.patch('/product/:id', ProductController.updateProduct)
+routes.delete('/product/:id', ProductController.deleteProduct)
 
 
 export default routes
