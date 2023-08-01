@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose')
+import { Schema, model } from 'mongoose'
 
 const ProductModel = new Schema({
   description: {
@@ -23,4 +23,4 @@ const ProductModel = new Schema({
   timestamps: true
 })
 
-module.exports = model('Product', ProductModel)
+export default model('Product', ProductModel)

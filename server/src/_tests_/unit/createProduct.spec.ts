@@ -3,7 +3,7 @@
 // const ProductModel =  require('../models/ProductModel')
 import validationNumber from "../../validators/validationNumber";
 
-const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
+// const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
 
 describe('validations products', () => {
   it('should not able to validate price', () => {

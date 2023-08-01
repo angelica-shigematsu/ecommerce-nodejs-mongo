@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-const UserModel =  require('../models/UserModel')
+import UserModel from '../models/UserModel';
 import UserEntity from '../type/User'
 import isEmail from '../validators/validationEmail';
 import validationPhone from '../validators/validationPhone';
@@ -53,8 +53,11 @@ class UserController {
             await UserModel.create(user);
         
             return res.status(201).json({ message: `Create user successfully`}) ;
-        }catch(error) {
-            return res.status(400).json({ message: error.message })
+        }catch (error: unknown) {
+            if (error instanceof Error) {
+              return res.status(400).json({ message: error.message})
+            }
+            return res.status(400).json({ message: error })
         }
     }
 
@@ -118,8 +121,11 @@ class UserController {
 
             return res.status(200).send({ message: `Updated user successfully` })
 
-        }catch(error) {
-            return res.status(400).json({ message: error.message })
+        }catch (error: unknown) {
+            if (error instanceof Error) {
+              return res.status(400).json({ message: error.message})
+            }
+            return res.status(400).json({ message: error })
         }
     }
 
@@ -132,8 +138,11 @@ class UserController {
             if (!user) throw new Error(`Not exists this user`)
         
             return res.status(200).send({ message: `Delete user successfully` })
-        }catch(error) {
-            return res.status(404).send({ message: error.message})
+        }catch (error: unknown) {
+            if (error instanceof Error) {
+              return res.status(400).json({ message: error.message})
+            }
+            return res.status(400).json({ message: error })
         }
     }
 }

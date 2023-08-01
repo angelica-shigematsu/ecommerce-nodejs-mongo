@@ -1,7 +1,5 @@
 import validationCpf from "../../validators/validationCpf";
 
-const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
-
 describe('validations of data from users', () => {
   it('should not able accept cpf', () => {
 

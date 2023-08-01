@@ -1,6 +1,6 @@
-import express from "express"
+import express from "express";
 import mongoose from 'mongoose'
-import mongoURL from './config'
+import { mongoURL } from './config'
 
 class App {
   public express: express.Application

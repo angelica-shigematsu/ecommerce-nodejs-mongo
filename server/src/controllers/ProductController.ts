@@ -3,7 +3,7 @@ import ProductEntity from '../type/Product';
 import { isEmptyProduct } from '../validators/validationEmpty';
 import isNumber from '../validators/validationNumber';
 
-const ProductModel =  require('../models/ProductModel');
+import ProductModel from '../models/ProductModel';
 
 class ProductController {
     public async createProduct(req: Request, res: Response): Promise<Response> {
@@ -37,9 +37,12 @@ class ProductController {
         await ProductModel.create(product)
     
         return res.status(201).json({ message: `Product created successfully`})  
-      }catch (error) {
-        return res.status(400).json({ message: error.message})
-      } 
+      }catch (error: unknown) {
+        if (error instanceof Error) {
+          return res.status(400).json({ message: error.message})
+        }
+        return res.status(400).json({ message: error })
+      }
     }
 
     async updateProduct(req: Request, res: Response): Promise<Response> {
@@ -73,9 +76,12 @@ class ProductController {
         await ProductModel.findOneAndUpdate(filter, updateProduct)
 
         return res.status(200).json({ message: `Update product successfully`})
-      }catch (error) {
-        return res.status(400).json({ message: error.message})
-      } 
+      }catch (error: unknown) {
+        if (error instanceof Error) {
+          return res.status(400).json({ message: error.message})
+        }
+        return res.status(400).json({ message: error })
+      }
     }
 
     async deleteProduct(req: Request, res: Response): Promise<Response> {
@@ -87,9 +93,12 @@ class ProductController {
           if (!product) throw new Error(`Product not found`)
 
           return res.status(200).send({ message: `Delete product successfully` })
-      }catch (error) {
-        return res.status(400).json({ message: error.message})
-      }
+        }catch (error: unknown) {
+          if (error instanceof Error) {
+            return res.status(400).json({ message: error.message})
+          }
+          return res.status(400).json({ message: error })
+        }
     }
   }
   
