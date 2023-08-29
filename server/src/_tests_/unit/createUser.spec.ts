@@ -1,4 +1,5 @@
 import validationCpf from "../../validators/validationCpf";
+import isEmail from "../../validators/validationEmail";
 
 describe('validations of data from users', () => {
   it('should not able accept cpf', () => {
@@ -8,6 +9,14 @@ describe('validations of data from users', () => {
     const isCpf = validationCpf(cpf)
 
     expect(isCpf).toBeFalsy()
+  })
+
+  it('should not able accept same email already registered', () => {
+    const email = 'jonh@outlo88ok.com'
+
+    const validationEmail = isEmail(email)
+
+    expect(validationEmail).toBeFalsy()
   })
 })
 

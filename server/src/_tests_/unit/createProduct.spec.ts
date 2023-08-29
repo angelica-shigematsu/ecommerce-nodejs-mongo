@@ -2,6 +2,7 @@
 // const mongoURL= require('../config')
 // const ProductModel =  require('../models/ProductModel')
 import validationNumber from "../../validators/validationNumber";
+import ListProductController from "../../controllers/ListProductController";
 
 // const {expect,test, beforeAll, describe, afterAll, beforeEach, it} = require('@jest/globals');
 
@@ -13,6 +14,8 @@ describe('validations products', () => {
     expect(isNumber).toBeFalsy()
   })
 })
+
+
 
 // describe('insert', () => {
 //   beforeAll(async () => {

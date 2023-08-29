@@ -16,3 +16,9 @@ test("Post / - test product controller", () => {
     })
 });
 
+test('should able to return all products by type', async function() {
+    const response = await request(app)
+      .get('/product')
+      .set('Accept', 'application/json')
+    expect(response.status).toEqual(200);
+  });
