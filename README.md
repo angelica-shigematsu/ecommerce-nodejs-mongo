@@ -10,12 +10,6 @@ Desenvolvimento de um site e-commerce
 - Eslint
 - Jest (teste unitário)
 
-##  Desenvolvedora:
-- Angélica Shigematsu
-
-## Status: 
-- Em andamento
-
 ## Como usar
 - Baixar dependências : entrar na pasta server
 ```
