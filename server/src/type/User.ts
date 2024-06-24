@@ -1,13 +1,20 @@
-export default interface UserEntity {
+export interface IUserEntity{
   name: string;
-  dateBirth: Date;
+  dateBirth: Date;  
   cpf: string;
-  address: string;
-  city: string; 
-  state : string; 
-  numberHouse: number;
   phone: string;
   email: string;
   active: boolean;
   level: string;
+  address: IAddress;
+}
+
+
+interface IAddress {
+  streetAddress: string;
+  city: string;
+  state : string;
+  numberHouse: number;
+  postalCode: string;
+  complement?: string;
 }

@@ -6,8 +6,8 @@ import OrderController from './controllers/OrderController';
 const routes = Router()
 
 routes.post('/user', UserController.createUser)
-routes.patch('/user/:id', UserController.updateUser)
-routes.delete('/user/:id', UserController.deleteUser)
+// routes.patch('/user/:id', UserController.updateUser)
+// routes.delete('/user/:id', UserController.deleteUser)
 
 routes.get('/product', ListProductController.getProductByType)
 routes.post('/product', ProductController.createProduct)
