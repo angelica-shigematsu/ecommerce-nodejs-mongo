@@ -4,6 +4,7 @@ export interface IUserEntity{
   cpf: string;
   phone: string;
   email: string;
+  password: string;
   active: boolean;
   level: string;
   address: IAddress;

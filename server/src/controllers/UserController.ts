@@ -1,16 +1,12 @@
 import { Request, Response } from 'express';
 import UserModel from '../models/UserModel';
 import { IUserEntity } from  '../type/User'
-import isEmail from '../validators/validationEmail';
-import validationPhone from '../validators/validationPhone';
-import validationCpf from '../validators/validationCpf';
-import validationName from '../validators/validationName';
 import { validationUserData } from '../validators/validationUserData';
 
 class UserController {
 	public async createUser(req: Request, res: Response): Promise<Response> {
 		try {
-			const { name, dateBirth, cpf, phone, email, active, level, address: IAddress } = req.body as IUserEntity
+			const { name, dateBirth, password, cpf, phone, email, active, level, address: IAddress } = req.body as IUserEntity
 
 			validationUserData(name, dateBirth, cpf, phone, email);
 
@@ -20,12 +16,11 @@ class UserController {
 				cpf,
 				phone,
 				email,
+				password,
 				active,
 				level,
 				address : IAddress
 			}
-
-			// if (isEmptyUser(user)) throw new Error(`Field user empty`)
 
 			await UserModel.create(user);
 				
@@ -38,84 +33,67 @@ class UserController {
 			}
 		}
 
-	// async updateUser(req: Request, res: Response): Promise<Response> {
-	// 	try {
-	// 		const { id } = req.params;
+	async updateUser(req: Request, res: Response): Promise<Response> {
+		try {
+			const { id } = req.params;
 
-	// 		const { name, 
-	// 			dateBirth, 
-	// 			cpf,
-	// 			phone,
-	// 			email,
-	// 			active,
-	// 			level, 
-	// 			address
-	// 			}= req.body as IUserEntity
+			const { 
+				name,
+				dateBirth,
+				cpf,
+				phone,
+				email,
+				active,
+				level,
+				address : IAddress
+				}= req.body as IUserEntity
 
-	// 			if (!validationName(name)) throw new Error(`Invalid name: Write full name`)
+				
+				validationUserData(name, dateBirth, cpf, phone, email);
 
-	// 			if (!isEmail(email)) throw new Error(`Invalid email: ${email}`)
+				const user : IUserEntity = {
+					...req.body
+				}
 
-	// 			if (!validationPhone(phone)) throw new Error(`Invalid phone`)
+				const filterUser = { _id: id }
 
-	// 			if (!validationCpf(cpf)) throw new Error(`Invalid cpf`)
+				const filterEmail = {
+					email, 
+					_id: { $ne: id }
+				}
 
-	// 			const user : UserEntity = {
-	// 					...req.body
-	// 			}
+				const foundEmail = await UserModel.findOne(filterEmail);
 
-	// 			if(isEmptyUser(user)) throw new Error(`Field user empty`)
+				if (foundEmail) throw new Error(`Already exists ${email}`)
 
-	// 			const filterUser = { _id: id }
+				await UserModel.findOneAndUpdate(filterUser,  user)
 
-	// 			const update = { 
-	// 				name: name,
-	// 				dateBirth: dateBirth,
-	// 				cpf: cpf,
-	// 				address,
-	// 				phone: phone,
-	// 				email: email,
-	// 				active: active,
-	// 				leve: level,
-	// 			}
+				return res.status(200).send({ message: `Updated user successfully` })
 
-	// 			const filterEmail = {
-	// 				email, 
-	// 				_id: { $ne: id }
-	// 			}
+		}catch (error: unknown) {
+				if (error instanceof Error) {
+					return res.status(400).json({ message: error.message})
+				}
+				return res.status(400).json({ message: error })
+		}
+	}
 
-	// 			const foundEmail = await UserModel.findOne(filterEmail);
+	async deleteUser(req: Request, res: Response): Promise<Response> {
+			try {
+					const { id } = req.params
 
-	// 			if (foundEmail) throw new Error(`Already exists ${email}`)
+					const user = await UserModel.findOneAndDelete({_id: id })
 
-	// 			await UserModel.findOneAndUpdate(filterUser,  update)
-
-	// 			return res.status(200).send({ message: `Updated user successfully` })
-
-	// 	}catch (error: unknown) {
-	// 			if (error instanceof Error) {
-	// 				return res.status(400).json({ message: error.message})
-	// 			}
-	// 			return res.status(400).json({ message: error })
-	// 	}
-	// }
-
-	// async deleteUser(req: Request, res: Response): Promise<Response> {
-	// 		try {
-	// 				const { id } = req.params
-
-	// 				const user = await UserModel.findOneAndDelete({_id: id })
-
-	// 				if (!user) throw new Error(`Not exists this user`)
+					if (!user) throw new Error(`Not exists this user`)
 			
-	// 				return res.status(200).send({ message: `Delete user successfully` })
-	// 		}catch (error: unknown) {
-	// 				if (error instanceof Error) {
-	// 					return res.status(400).json({ message: error.message})
-	// 				}
-	// 				return res.status(400).json({ message: error })
-	// 		}
-	// }
+					return res.status(200).send({ message: `Delete user successfully` })
+			}catch (error: unknown) {
+					if (error instanceof Error) {
+						return res.status(400).json({ message: error.message})
+					}
+					return res.status(400).json({ message: error })
+			}
+	}
 }
 
 export default new UserController()
