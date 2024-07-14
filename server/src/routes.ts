@@ -2,19 +2,20 @@ import { Router } from 'express';
 import UserController  from './controllers/UserController'
 import ProductController from './controllers/ProductController';
 import ListProductController from './controllers/ListProductController';
-import OrderController from './controllers/OrderController';
+import { OrderProductController } from './controllers/OrderProductController';
+
 const routes = Router()
 
-routes.post('/user', UserController.createUser)
-// routes.patch('/user/:id', UserController.updateUser)
-// routes.delete('/user/:id', UserController.deleteUser)
+routes.post('/users', UserController.createUser)
+routes.patch('/users/:id', UserController.updateUser)
+routes.delete('/users/:id', UserController.deleteUser)
 
-routes.get('/product', ListProductController.getProductByType)
-routes.post('/product', ProductController.createProduct)
-routes.patch('/product/:id', ProductController.updateProduct)
-routes.delete('/product/:id', ProductController.deleteProduct)
+routes.get('/products', ListProductController.getProductByType)
+routes.post('/products', ProductController.createProduct)
+routes.patch('/products/:id', ProductController.updateProduct)
+routes.delete('/products/:id', ProductController.deleteProduct)
 
-routes.post('/order', OrderController.createOrder)
+routes.post('/order/:id', OrderProductController.createOrder)
 
 
 export default routes

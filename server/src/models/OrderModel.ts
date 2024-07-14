@@ -5,10 +5,13 @@ const OrderModel = new Schema({
   status: String,
   
   products: [{
+    _id: {
     type: Schema.Types.ObjectId,
     ref: 'OrderProduct'
-  }],
-
+    },
+    quant: Number
+  },
+],
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User'

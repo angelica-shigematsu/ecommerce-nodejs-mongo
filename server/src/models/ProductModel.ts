@@ -7,7 +7,7 @@ const ProductModel = new Schema({
   stock:{
     type: Number,
   },
-  price: {
+  priceUnit: {
     type: Number,
   },
   typeProduct: {

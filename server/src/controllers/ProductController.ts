@@ -12,12 +12,12 @@ class ProductController {
         const {  
           description, 
           stock,
-          price,
+          priceUnit,
           typeProduct,
           photo_link,
           active} = req.body as ProductEntity
 
-        if (!isNumber(price) && !isNumber(stock)) throw new Error(`Price and stock need to be number`)
+        if (!isNumber(priceUnit) && !isNumber(stock)) throw new Error(`Price and stock need to be number`)
     
         const hasProduct = await ProductModel.findOne({ description })
     
@@ -26,7 +26,7 @@ class ProductController {
         const product = {
           description, 
           stock,
-          price,
+          priceUnit,
           typeProduct,
           photo_link,
           active
@@ -52,20 +52,20 @@ class ProductController {
         const {
           description, 
           stock,
-          price,
+          priceUnit,
           typeProduct,
           photo_link,
           active
         } = req.body as ProductEntity
 
-        if (!isNumber(price) || !isNumber(stock)) throw new Error(`Price and stock need to be number`)
+        if (!isNumber(priceUnit) || !isNumber(stock)) throw new Error(`Price and stock need to be number`)
 
         const filter = { _id: id }
 
         const updateProduct = {
           description, 
           stock,
-          price,
+          priceUnit,
           typeProduct,
           photo_link,
           active

@@ -19,3 +19,13 @@ interface IAddress {
   postalCode: string;
   complement?: string;
 }
+
+export interface IUserOrder{
+  name: string;
+  cpf: string;
+  phone: string;
+  email: string;
+  level: string;
+  address: IAddress;
+}
+
